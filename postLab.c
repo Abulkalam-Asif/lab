@@ -116,3 +116,70 @@ void businessBooking(int arr[]) {
     sleep(3);
     boarding_pass(name,seatNum-1,choice);
 }
+
+void economyBooking(int arr[]) {
+  int seatNum;
+  printf("Kindly enter your name: ");
+    scanf("%s",&name);
+  printf("Enter seat number(31-100): ");
+  scanf("%d", &seatNum);
+  if (seatNum>=31   &&  seatNum<=100)
+  {
+        if (check_after_booking(arr,seatNum-1))
+        {
+
+            arr[seatNum - 1] = 1;
+            printf("Your seat number %d in Economy Class has been booked successfully.\n", seatNum);
+        }
+        else
+        {
+            printf("Seat is already booked\n");
+              sleep(3);
+            return;
+        }
+  }
+  else
+  {
+    printf("Invalid. Enter valid seat number\n");
+      sleep(3);
+    return;
+  }
+  sleep(3);
+  boarding_pass(name,seatNum-1,choice);
+}
+
+int check_after_booking(int arr[],int seat)
+{
+    if (arr[seat]==0)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+void boarding_pass(char first_name[],int seat,int section)
+{
+    system("cls");
+    printf("Your boarding pass is being printed.....\n");
+    sleep(5);
+    printf("******************************\n");
+    printf("*                                  AH AIRLINES                                           *\n");
+    printf("******************************\n");
+    printf("*    Passenger Name  |%21s                                                                \n",first_name);
+    if (section==1)
+    {
+    printf("*    Class:          |                    Bussiness                                       *\n");
+    }
+    else
+    {
+    printf("*    Class:          |                     Economy                                        *\n");
+    }
+    printf("*    Seat no         |                     %d                                            *\n",seat+1);
+    printf("******************************\n");
+    sleep(3);
+    system("cls");
+
+}
